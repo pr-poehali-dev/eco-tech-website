@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 
 const services = [
@@ -78,6 +80,8 @@ export default function Index() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
+    requestType: '',
     message: '',
   });
 
@@ -89,7 +93,7 @@ export default function Index() {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Спасибо за обращение! Мы свяжемся с вами в ближайшее время.');
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', subject: '', requestType: '', message: '' });
   };
 
   const scrollToSection = (id: string) => {
@@ -334,25 +338,58 @@ export default function Index() {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
+                    <Label htmlFor="name">Ваше имя</Label>
                     <Input
-                      placeholder="Ваше имя"
+                      id="name"
+                      placeholder="Иван Петров"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
                     />
                   </div>
                   <div>
+                    <Label htmlFor="email">Email</Label>
                     <Input
+                      id="email"
                       type="email"
-                      placeholder="Email"
+                      placeholder="ivan@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
                     />
                   </div>
                   <div>
+                    <Label htmlFor="requestType">Тип запроса</Label>
+                    <Select
+                      value={formData.requestType}
+                      onValueChange={(value) => setFormData({ ...formData, requestType: value })}
+                      required
+                    >
+                      <SelectTrigger id="requestType">
+                        <SelectValue placeholder="Выберите тип запроса" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="commercial">Коммерческий</SelectItem>
+                        <SelectItem value="technical">Технический</SelectItem>
+                        <SelectItem value="general">Общий</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="subject">Тема сообщения</Label>
+                    <Input
+                      id="subject"
+                      placeholder="Краткая тема обращения"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Сообщение</Label>
                     <Textarea
-                      placeholder="Расскажите о вашем проекте"
+                      id="message"
+                      placeholder="Расскажите подробнее о вашем проекте или запросе"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
