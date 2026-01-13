@@ -413,7 +413,7 @@ export default function Index() {
                     <Icon name="MapPin" className="text-primary mt-1" size={20} />
                     <div>
                       <p className="font-medium">Адрес</p>
-                      <p className="text-sm text-muted-foreground">г. Москва, ул. Экологическая, д. 42, офис 301</p>
+                      <p className="text-sm text-muted-foreground">г. Зеленоград, Центральный проспект, д. 1, офис 301</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -441,12 +441,15 @@ export default function Index() {
               </Card>
 
               <Card className="border-none shadow-lg overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <div className="text-center">
-                    <Icon name="Map" size={48} className="text-primary/60 mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground">Интерактивная карта</p>
-                  </div>
-                </div>
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?ll=37.198419%2C55.987800&z=15&l=map&pt=37.198419,55.987800,pm2rdm"
+                  width="100%"
+                  height="300"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="rounded-lg"
+                  title="Карта офиса в Зеленограде"
+                ></iframe>
               </Card>
             </div>
           </div>
@@ -486,7 +489,7 @@ export default function Index() {
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>+7 (495) 123-45-67</li>
                 <li>info@ecotech.ru</li>
-                <li>г. Москва, ул. Экологическая, 42</li>
+                <li>г. Зеленоград, Центральный пр-т, 1</li>
               </ul>
             </div>
           </div>
