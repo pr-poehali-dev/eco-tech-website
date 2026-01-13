@@ -28,6 +28,30 @@ const services = [
   },
 ];
 
+const projects = [
+  {
+    title: 'Солнечная ферма "Зелёный горизонт"',
+    client: 'ООО "ЭнергоПром"',
+    description: 'Строительство солнечной электростанции мощностью 50 МВт. Снижение выбросов CO₂ на 45 000 тонн в год.',
+    stats: { power: '50 МВт', co2: '45 000 т/год', area: '120 га' },
+    icon: 'Sun',
+  },
+  {
+    title: 'Система водоочистки завода "СталПром"',
+    client: 'ПАО "СталПром"',
+    description: 'Внедрение замкнутого цикла водопользования с эффективностью 93%. Экономия 2,5 млн м³ воды в год.',
+    stats: { efficiency: '93%', water: '2.5 млн м³', payback: '3.2 года' },
+    icon: 'Droplet',
+  },
+  {
+    title: 'Офисный комплекс "ЭкоХаб"',
+    client: 'Группа компаний "Развитие"',
+    description: 'Зелёная сертификация LEED Platinum. Энергопотребление на 60% ниже стандарта.',
+    stats: { certification: 'LEED Platinum', energy: '-60%', area: '15 000 м²' },
+    icon: 'Building2',
+  },
+];
+
 const team = [
   {
     name: 'Анна Соколова',
@@ -85,6 +109,9 @@ export default function Index() {
             <div className="hidden md:flex gap-8">
               <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-primary transition-colors">
                 О нас
+              </button>
+              <button onClick={() => scrollToSection('projects')} className="text-foreground hover:text-primary transition-colors">
+                Проекты
               </button>
               <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-primary transition-colors">
                 Услуги
@@ -188,6 +215,44 @@ export default function Index() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Наши проекты</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Реализованные решения, которые уже приносят результат и помогают нашим клиентам
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <Card
+                key={index}
+                className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+              >
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center mb-4">
+                    <Icon name={project.icon as any} className="text-white" size={32} />
+                  </div>
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                  <CardDescription className="text-base font-medium text-primary">{project.client}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm text-muted-foreground">{project.description}</p>
+                  <div className="grid grid-cols-3 gap-2 pt-4 border-t">
+                    {Object.entries(project.stats).map(([key, value]) => (
+                      <div key={key} className="text-center">
+                        <div className="text-lg font-bold text-primary">{value}</div>
+                        <div className="text-xs text-muted-foreground capitalize">{key}</div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
